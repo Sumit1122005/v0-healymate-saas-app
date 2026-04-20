@@ -27,7 +27,7 @@ export async function signup(email: string, password: string): Promise<{ success
 
     // Create new user
     const userId = crypto.randomUUID();
-    const passwordHash = hashPassword(password);
+    const passwordHash = await hashPassword(password);
 
     const newUser: User = {
       id: userId,
@@ -62,7 +62,8 @@ export async function login(email: string, password: string): Promise<{ success:
       return { success: false, error: 'User not found' };
     }
 
-    if (!verifyPasswordHash(password, user.passwordHash)) {
+    const isValidPassword = await verifyPasswordHash(password, user.passwordHash);
+    if (!isValidPassword) {
       return { success: false, error: 'Invalid password' };
     }
 

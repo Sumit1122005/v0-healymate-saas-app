@@ -23,6 +23,7 @@ export default function JournalView() {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
+  const [decryptedContent, setDecryptedContent] = useState<string>('');
   const [searchTerm, setSearchTerm] = useState('');
   const [formData, setFormData] = useState({ title: '', content: '', mood: 3 });
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +46,13 @@ export default function JournalView() {
     loadEntries();
   }, [user]);
 
+  // Decrypt content when selected entry changes
+  useEffect(() => {
+    if (selectedEntry && user) {
+      decryptEntry(selectedEntry).then(setDecryptedContent);
+    }
+  }, [selectedEntry, user]);
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user || !formData.title || !formData.content) return;
@@ -55,7 +63,7 @@ export default function JournalView() {
       const insight = await analyzeSentiment(formData.content);
 
       // Encrypt content
-      const encryptedContent = encryptData(formData.content, user.id);
+      const encryptedContent = await encryptData(formData.content, user.id);
 
       const entry: JournalEntry = {
         id: crypto.randomUUID(),
@@ -94,10 +102,10 @@ export default function JournalView() {
     entry.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const decryptEntry = (entry: JournalEntry) => {
+  const decryptEntry = async (entry: JournalEntry) => {
     try {
       if (!user) return '';
-      return decryptData(entry.content, user.id);
+      return await decryptData(entry.content, user.id);
     } catch {
       return '[Unable to decrypt - entry may be corrupted]';
     }
@@ -325,7 +333,7 @@ export default function JournalView() {
               </div>
 
               <div className="p-4 bg-secondary/20 rounded-lg border border-border">
-                <p className="text-foreground whitespace-pre-wrap">{decryptEntry(selectedEntry)}</p>
+                <p className="text-foreground whitespace-pre-wrap">{decryptedContent}</p>
               </div>
             </div>
           </DialogContent>
