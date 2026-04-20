@@ -34,6 +34,7 @@ const navItems: NavItem[] = [
   { id: 'therapist', label: 'Therapists', icon: <Users className="w-5 h-5" />, view: 'therapist' },
   { id: 'community', label: 'Community', icon: <MessageCircle className="w-5 h-5" />, view: 'community' },
   { id: 'resources', label: 'Resources', icon: <Library className="w-5 h-5" />, view: 'resources' },
+  { id: 'settings', label: 'Settings', icon: <Settings className="w-5 h-5" />, view: 'settings' },
 ];
 
 interface DashboardNavProps {

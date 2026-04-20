@@ -11,8 +11,9 @@ import TherapistView from './views/therapist-view';
 import CommunityView from './views/community-view';
 import ResourcesView from './views/resources-view';
 import DashboardOverview from './views/dashboard-overview';
+import SettingsView from './views/settings-view';
 
-type ViewType = 'overview' | 'journal' | 'mood' | 'meditation' | 'goals' | 'therapist' | 'community' | 'resources';
+type ViewType = 'overview' | 'journal' | 'mood' | 'meditation' | 'goals' | 'therapist' | 'community' | 'resources' | 'settings';
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState<ViewType>('overview');
@@ -35,6 +36,8 @@ export default function Dashboard() {
         return <CommunityView />;
       case 'resources':
         return <ResourcesView />;
+      case 'settings':
+        return <SettingsView />;
       default:
         return <DashboardOverview />;
     }
