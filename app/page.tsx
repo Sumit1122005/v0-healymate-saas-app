@@ -1,15 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
-import AuthForm from '@/components/auth-form';
-import Dashboard from '@/components/dashboard';
+import LandingPage from '@/components/landing/landing-page';
 import LoadingSpinner from '@/components/loading-spinner';
+import { useEffect } from 'react';
 
 export default function Home() {
   const { isAuthenticated, isLoading } = useAuth();
   const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated) {
+      router.push('/app/dashboard');
+    }
+  }, [isAuthenticated, isLoading, router]);
 
   if (isLoading) {
     return (
@@ -19,9 +24,5 @@ export default function Home() {
     );
   }
 
-  if (!isAuthenticated) {
-    return <AuthForm />;
-  }
-
-  return <Dashboard />;
+  return <LandingPage />;
 }
