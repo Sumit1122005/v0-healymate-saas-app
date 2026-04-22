@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import Logo from '@/components/ui/logo';
 import { AlertCircle, Loader2 } from 'lucide-react';
 
 export default function AuthForm() {
@@ -40,13 +42,10 @@ export default function AuthForm() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5 p-4">
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <div className="flex justify-center mb-4">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent"></div>
-            </div>
+        <div className="mb-8 text-center space-y-4">
+          <div className="flex justify-center">
+            <Logo variant="light" size="md" showText={true} />
           </div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">HealyMate</h1>
           <p className="text-muted-foreground">Your AI-powered mental health companion</p>
         </div>
 
@@ -78,9 +77,19 @@ export default function AuthForm() {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-foreground mb-2 block">
-                  Password
-                </label>
+                <div className="flex justify-between items-center mb-2">
+                  <label className="text-sm font-medium text-foreground">
+                    Password
+                  </label>
+                  {!isSignup && (
+                    <Link
+                      href="/auth/forgot-password"
+                      className="text-xs text-primary hover:text-primary/80 font-medium transition-colors"
+                    >
+                      Forgot password?
+                    </Link>
+                  )}
+                </div>
                 <Input
                   type="password"
                   placeholder="••••••••"
