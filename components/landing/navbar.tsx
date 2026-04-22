@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
 
 export default function LandingNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,11 +22,8 @@ export default function LandingNavbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="p-2 bg-gradient-to-br from-primary to-accent rounded-lg group-hover:shadow-lg group-hover:shadow-primary/50 transition-all">
-              <span className="text-lg font-bold text-foreground">HM</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">HealyMate</span>
+          <Link href="/" className="group">
+            <Logo variant="light" size="md" showText={true} className="group-hover:opacity-80 transition-opacity" />
           </Link>
 
           {/* Desktop Navigation */}

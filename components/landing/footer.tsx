@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Logo from '@/components/ui/logo';
 import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
 
 export default function Footer() {
@@ -12,14 +13,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-gradient-to-br from-primary to-accent rounded-lg group-hover:shadow-lg transition-all">
-                <span className="text-lg font-bold text-foreground">HM</span>
-              </div>
-              <span className="text-lg font-bold">HealyMate</span>
+            <Link href="/" className="group">
+              <Logo variant="light" size="md" showText={true} className="group-hover:opacity-80 transition-opacity" />
             </Link>
             <p className="text-foreground/60 text-sm">
-              Your personal AI mental health companion.
+              AI-powered. Human-centered. Always with you.
             </p>
           </div>
 

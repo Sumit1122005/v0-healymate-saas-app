@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function HeroSection() {
@@ -55,11 +56,16 @@ export default function HeroSection() {
           initial="hidden"
           animate="visible"
         >
-          {/* Badge */}
+          {/* Logo */}
+          <motion.div variants={itemVariants} className="flex justify-center">
+            <Logo variant="light" size="lg" showText={true} />
+          </motion.div>
+
+          {/* Brand Tagline */}
           <motion.div variants={itemVariants} className="flex justify-center">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full backdrop-blur-sm hover:bg-primary/20 transition-colors">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Now available for everyone</span>
+              <span className="text-sm font-medium text-primary">AI-POWERED. HUMAN-CENTERED. ALWAYS WITH YOU.</span>
             </div>
           </motion.div>
 
@@ -72,6 +78,7 @@ export default function HeroSection() {
               </span>
               <span className="block">Companion</span>
             </h1>
+            <p className="text-xl md:text-2xl text-primary font-semibold">CALM. CONNECTED. EMPOWERED.</p>
           </motion.div>
 
           {/* Subheading */}

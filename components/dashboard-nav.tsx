@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth-context';
 import { Button } from '@/components/ui/button';
+import Logo from '@/components/ui/logo';
 import {
   Home,
   BookOpen,
@@ -72,15 +73,7 @@ export default function DashboardNav({ activeView, onViewChange }: DashboardNavP
       >
         {/* Logo */}
         <div className="p-6 border-b border-border">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <span className="text-white font-bold text-sm">HM</span>
-            </div>
-            <div>
-              <h1 className="font-bold text-foreground">HealyMate</h1>
-              <p className="text-xs text-muted-foreground">Wellness Companion</p>
-            </div>
-          </div>
+          <Logo variant="light" size="sm" showText={true} />
         </div>
 
         {/* Navigation */}
