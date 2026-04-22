@@ -34,7 +34,7 @@ export default function SettingsView() {
   useEffect(() => {
     const loadUserData = async () => {
       if (!user) return;
-      const dbUser = await userDB.getById(user.id);
+      const dbUser = await userDB.get(user.id);
       if (dbUser) {
         setUserData(dbUser);
       }
