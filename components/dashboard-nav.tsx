@@ -106,13 +106,6 @@ export default function DashboardNav({ activeView, onViewChange }: DashboardNavP
 
         {/* Footer */}
         <div className="p-4 border-t border-border space-y-2">
-          <Button
-            variant="outline"
-            className="w-full justify-start gap-2 border-border hover:bg-secondary/50"
-          >
-            <Settings className="w-4 h-4" />
-            Settings
-          </Button>
           <div className="pt-2 space-y-1">
             <p className="text-xs text-muted-foreground px-2">Logged in as</p>
             <p className="text-sm font-medium text-foreground px-2 truncate">{user?.email}</p>

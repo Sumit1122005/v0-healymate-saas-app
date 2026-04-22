@@ -213,89 +213,114 @@ export default function ResourcesView() {
             <p className="text-muted-foreground">No resources found matching your search.</p>
           </div>
         ) : (
-          filteredResources.map((resource) => (
-            <Card
+          filteredResources.map((resource, index) => (
+            <div
               key={resource.id}
-              className="border-primary/10 hover:border-primary/30 transition-all hover:shadow-lg overflow-hidden"
+              className="group relative"
+              style={{ animationDelay: `${index * 50}ms` }}
             >
-              <CardContent className="pt-6">
-                <div className="space-y-4">
-                  {/* Icon and Type */}
-                  <div className="flex items-start justify-between">
-                    <div className="p-3 bg-primary/10 text-primary rounded-lg">{resource.icon}</div>
-                    <span className={`px-2 py-1 rounded text-xs font-medium flex items-center gap-1 ${getTypeColor(resource.type)}`}>
-                      {getTypeIcon(resource.type)}
-                      {resource.type}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className="font-semibold text-lg text-foreground">{resource.title}</h3>
-                    <p className="text-sm text-muted-foreground mt-2">{resource.description}</p>
-                  </div>
-
-                  {/* Footer */}
-                  <div className="pt-4 border-t border-border space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
-                        {resource.category}
+              {/* Gradient background effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg" />
+              
+              <Card
+                className="border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-xl overflow-hidden relative z-10 group-hover:shadow-primary/20"
+              >
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    {/* Icon and Type */}
+                    <div className="flex items-start justify-between">
+                      <div className="p-3 bg-gradient-to-br from-primary/20 to-primary/10 text-primary rounded-lg group-hover:from-primary/30 group-hover:to-primary/20 transition-all">
+                        {resource.icon}
+                      </div>
+                      <span className={`px-2 py-1 rounded text-xs font-medium flex items-center gap-1 transition-all ${getTypeColor(resource.type)}`}>
+                        {getTypeIcon(resource.type)}
+                        {resource.type}
                       </span>
-                      {resource.author && (
-                        <p className="text-xs text-muted-foreground">by {resource.author}</p>
-                      )}
                     </div>
-                    <Button
-                      asChild
-                      className="w-full bg-primary hover:bg-primary/90"
-                    >
-                      <a href={resource.url}>
-                        Learn More
-                      </a>
-                    </Button>
+
+                    {/* Content */}
+                    <div>
+                      <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">{resource.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-2">{resource.description}</p>
+                    </div>
+
+                    {/* Footer */}
+                    <div className="pt-4 border-t border-border/50 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">
+                          {resource.category}
+                        </span>
+                        {resource.author && (
+                          <p className="text-xs text-muted-foreground">by {resource.author}</p>
+                        )}
+                      </div>
+                      <Button
+                        asChild
+                        className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all shadow-md hover:shadow-lg"
+                      >
+                        <a href={resource.url}>
+                          Learn More
+                        </a>
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           ))
         )}
       </div>
 
       {/* Featured Resources */}
-      <Card className="border-primary/10 bg-gradient-to-r from-primary/5 to-secondary/5">
+      <Card className="border border-primary/10 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 hover:border-primary/20 transition-all">
         <CardHeader>
-          <CardTitle>Featured Learning Paths</CardTitle>
+          <CardTitle className="text-2xl">Featured Learning Paths</CardTitle>
           <CardDescription>Curated collections to support your wellness journey</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-lg bg-card border border-border">
-              <h4 className="font-semibold text-foreground mb-2">Getting Started</h4>
+            <div className="group p-6 rounded-lg bg-gradient-to-br from-card to-card/50 border border-primary/10 hover:border-primary/30 hover:shadow-lg transition-all cursor-pointer">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                  <span className="text-primary font-bold">1</span>
+                </div>
+                <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">Getting Started</h4>
+              </div>
               <p className="text-sm text-muted-foreground mb-3">Essential resources for beginners</p>
-              <ul className="text-sm space-y-1 text-muted-foreground">
-                <li>• Understanding Anxiety</li>
-                <li>• Mindfulness Basics</li>
-                <li>• Sleep Hygiene Guide</li>
+              <ul className="text-sm space-y-2 text-muted-foreground">
+                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Understanding Anxiety</li>
+                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Mindfulness Basics</li>
+                <li className="flex items-center gap-2"><span className="text-primary">✓</span> Sleep Hygiene Guide</li>
               </ul>
             </div>
 
-            <div className="p-4 rounded-lg bg-card border border-border">
-              <h4 className="font-semibold text-foreground mb-2">Advanced Practices</h4>
+            <div className="group p-6 rounded-lg bg-gradient-to-br from-card to-card/50 border border-secondary/10 hover:border-secondary/30 hover:shadow-lg transition-all cursor-pointer">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-secondary/10 rounded-lg group-hover:bg-secondary/20 transition-colors">
+                  <span className="text-secondary font-bold">2</span>
+                </div>
+                <h4 className="font-semibold text-foreground group-hover:text-secondary transition-colors">Advanced Practices</h4>
+              </div>
               <p className="text-sm text-muted-foreground mb-3">Deepen your wellness practice</p>
-              <ul className="text-sm space-y-1 text-muted-foreground">
-                <li>• CBT Techniques</li>
-                <li>• Yoga for Mental Health</li>
-                <li>• Advanced Meditation</li>
+              <ul className="text-sm space-y-2 text-muted-foreground">
+                <li className="flex items-center gap-2"><span className="text-secondary">✓</span> CBT Techniques</li>
+                <li className="flex items-center gap-2"><span className="text-secondary">✓</span> Yoga for Mental Health</li>
+                <li className="flex items-center gap-2"><span className="text-secondary">✓</span> Advanced Meditation</li>
               </ul>
             </div>
 
-            <div className="p-4 rounded-lg bg-card border border-border">
-              <h4 className="font-semibold text-foreground mb-2">Community Support</h4>
+            <div className="group p-6 rounded-lg bg-gradient-to-br from-card to-card/50 border border-accent/10 hover:border-accent/30 hover:shadow-lg transition-all cursor-pointer">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2 bg-accent/10 rounded-lg group-hover:bg-accent/20 transition-colors">
+                  <span className="text-accent font-bold">3</span>
+                </div>
+                <h4 className="font-semibold text-foreground group-hover:text-accent transition-colors">Community Support</h4>
+              </div>
               <p className="text-sm text-muted-foreground mb-3">Connect and share with others</p>
-              <ul className="text-sm space-y-1 text-muted-foreground">
-                <li>• Support Stories</li>
-                <li>• Group Discussions</li>
-                <li>• Wellness Challenges</li>
+              <ul className="text-sm space-y-2 text-muted-foreground">
+                <li className="flex items-center gap-2"><span className="text-accent">✓</span> Support Stories</li>
+                <li className="flex items-center gap-2"><span className="text-accent">✓</span> Group Discussions</li>
+                <li className="flex items-center gap-2"><span className="text-accent">✓</span> Wellness Challenges</li>
               </ul>
             </div>
           </div>
