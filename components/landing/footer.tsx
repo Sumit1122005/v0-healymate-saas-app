@@ -45,13 +45,16 @@ export default function Footer() {
           <div className="space-y-4">
             <h4 className="font-semibold text-foreground">Connect</h4>
             <div className="flex gap-4">
-              <a href="https://github.com/Sumit1122005" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors" title="GitHub">
+              <a href="https://twitter.com" className="text-foreground/60 hover:text-primary transition-colors">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href="https://github.com" className="text-foreground/60 hover:text-primary transition-colors">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/in/sumit1122005" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors" title="LinkedIn">
+              <a href="https://linkedin.com" className="text-foreground/60 hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:sumit1122005@gmail.com" className="text-foreground/60 hover:text-primary transition-colors" title="Email">
+              <a href="mailto:hello@healymate.com" className="text-foreground/60 hover:text-primary transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
